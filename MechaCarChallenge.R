@@ -2,7 +2,7 @@ library(jsonlite)
 library(tidyverse)
 
 
-#------Second Delivery--------
+#------First Deliverable--------
 #Importing CSV to the script
 mechacar_table <- read.csv(file='MechaCar_mpg.csv',check.names=F,stringsAsFactors = F)
 #Previsualize data
@@ -43,3 +43,13 @@ total_summary
 #Grouping by manufacturer and summarizing values by manufacturer
 lot_summary <- suspension_coil_table %>% group_by(Manufacturing_Lot) %>% summarise(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), SD=sd(PSI), .groups = 'keep')
 lot_summary
+
+#------Third Deliverable--------
+
+#Creating function of t.test to the complete population
+t.test(suspension_coil_table$PSI,mu=1500)
+
+#Creating functions of t.test to the three different manufacturing lots
+t.test(subset(suspension_coil_table, Manufacturing_Lot=="Lot1")$PSI,mu=1500)
+t.test(subset(suspension_coil_table, Manufacturing_Lot=="Lot2")$PSI,mu=1500)
+t.test(subset(suspension_coil_table, Manufacturing_Lot=="Lot3")$PSI,mu=1500)
